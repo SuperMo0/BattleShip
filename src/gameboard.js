@@ -6,6 +6,12 @@ class gameboard {
         this.deads = 0;
     }
 
+
+
+    check_cell(cell) {
+        return this.board[cell].clicked;
+    }
+
     check_placment(size, index, direction) {
         if (index < 0 || index > 99) throw new Error("invalid index");
         if (direction == "v") {
@@ -20,8 +26,10 @@ class gameboard {
             let row = index / 10;
             let col = index % 10;
             let exist = 10 - col + 1;
+
             if (exist < size) return false;
             for (let i = 0; i < size; i++) {
+                // console.log(index);
                 if (this.board[index].ship != null) return false;
                 index++;
             }
@@ -40,7 +48,7 @@ class gameboard {
     }
 
     take_hit(cell) {
-        if (this.board[cell].clicked == true) throw new Error("can't hit same cell twice!");
+
         this.board[cell].clicked = true;
         if (this.board[cell].ship == null) return 0;
         else {

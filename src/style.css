@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-image: linear-gradient(45deg,
+            hsl(240deg 11% 19%) 0%,
+            hsl(230deg 15% 19%) 4%,
+            hsl(223deg 20% 19%) 8%,
+            hsl(217deg 26% 19%) 13%,
+            hsl(212deg 33% 19%) 17%,
+            hsl(207deg 41% 19%) 21%,
+            hsl(203deg 51% 18%) 25%,
+            hsl(199deg 67% 16%) 29%,
+            hsl(195deg 93% 14%) 33%,
+            hsl(193deg 100% 14%) 37%,
+            hsl(192deg 100% 14%) 42%,
+            hsl(190deg 100% 14%) 46%,
+            hsl(188deg 100% 14%) 50%,
+            hsl(186deg 100% 13%) 54%,
+            hsl(183deg 100% 13%) 58%,
+            hsl(179deg 100% 12%) 63%,
+            hsl(175deg 100% 13%) 67%,
+            hsl(171deg 100% 13%) 71%,
+            hsl(166deg 100% 13%) 75%,
+            hsl(161deg 100% 13%) 79%,
+            hsl(156deg 100% 13%) 83%,
+            hsl(151deg 100% 13%) 87%,
+            hsl(144deg 89% 14%) 92%,
+            hsl(127deg 60% 17%) 96%,
+            hsl(108deg 60% 17%) 100%);
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    color: aliceblue;
+    font-size: 3rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 230px;
+}
+
+#main {
+    flex: 1;
+    display: flex;
+    gap: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#player_board,
+#computer_board {
+    background-color: beige;
+    height: 600px;
+    width: 600px;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+}
+
+#cell {
+    border: 1px solid black;
+}
+
+.hover:hover {
+    background-color: rgba(0, 0, 0, 0.205);
+}
+
+img {
+    padding: 0;
+    border: 0;
+    width: 200px;
+    height: 200px;
+}
+
+#text {
+    position: relative;
+    bottom: 45px;
+}

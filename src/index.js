@@ -1,13 +1,20 @@
-// import { style } from "./style.css"
-
+import { style } from "./style.css";
+const { game } = require("./game");
+// import { logo } from "./../assets/logo.png";
 // import gameboard from "./gameboard.js"
 
 
 
+let game1 = new game();
 
-// let x = new gameboard();
+// console.log(game1.player_board.board[0]);
 
-// console.log(x.board);
+
+
+
+
+
+
 
 
 
