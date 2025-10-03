@@ -6,13 +6,64 @@ class game {
     constructor() {
         this.player_board = new gameboard();
         this.computer_board = new gameboard();
-        this.randomize_board(this.player_board);
         this.randomize_board(this.computer_board);
-        this.initiate_dom();
         this.text = document.querySelector(".text");
         this.counter1 = document.querySelector(".counter1");
         this.counter2 = document.querySelector(".counter2");
+        this.stop = true;
+        this.create_drag_ships();
+        this.initiate_dom();
+    }
+
+    start_random_game() {
         this.stop = false;
+        this.player_board = new gameboard();
+        this.computer_board = new gameboard();
+        this.randomize_board(this.player_board);
+        this.randomize_board(this.computer_board);
+        this.initiate_dom();
+    }
+
+
+    create_ship(size, direction) {
+        let ship_part = document.createElement("div");
+        ship_part.classList.toggle("ship_part");
+        ship_part.direction = "^";
+        ship_part.textContent = size + "\^";
+        ship_part.draggable = true;
+
+
+        return ship_part;
+    }
+
+    create_drag_ships() {
+
+        let container = document.querySelector("#container");
+        let arr = [2, 3, 3, 4, 5];
+        for (let size of arr) {
+            let ship = this.create_ship(size);
+            container.appendChild(ship);
+        }
+
+    }
+
+
+    add_drag_listener(cell) {
+
+        cell.addEventListener("dragover", (ev) => {
+            ev.preventDefault();
+        });
+        cell.addEventListener("drop", (ev) => {
+            ev.preventDefault();
+            console.log(ev.target);
+
+        });
+
+        cell.addEventListener("dragenter", (ev) => {
+            ev.preventDefault();
+            console.log(23232323);
+        })
+
     }
 
     initiate_dom() {
@@ -21,13 +72,14 @@ class game {
         player_board_dom.replaceChildren();
         computer_board_dom.replaceChildren();
         this.text = "Battleship";
-        this.counter1 = 0;
-        this.counter2 = 0;
+        this.counter1.textContent = "0";
+        this.counter2.textContent = 0;
         let cell = document.createElement("div");
         cell.classList.toggle("hover", true);
         cell.classList.toggle("cell", true);
         for (let i = 0; i <= 99; i++) {
             let new_cell = cell.cloneNode(true);
+            this.add_drag_listener(new_cell);
             new_cell.classList.toggle("hover");
             if (this.player_board.check_ship(i)) new_cell.style["background-color"] = "grey";
             player_board_dom.appendChild(new_cell);
@@ -68,7 +120,7 @@ class game {
         if (res) {
             cell.style["background-color"] = "grey";
             cell.textContent = "🎯";
-            this.counter1.textContent = +this.counter1.textContent + 1
+            // this.counter1.textContent = +this.counter1.textContent + 1
         }
         else {
             cell.style["background-color"] = "rgb(4, 190, 236)";
@@ -99,6 +151,7 @@ class game {
                         let res = this.player_board.take_hit(ne);
                         if (res) {
                             cells_array[ne].textContent = "🎯";
+
                             this.counter2.textContent = +this.counter2.textContent + 1
                         }
                         else cells_array[ne].textContent = "🔘";

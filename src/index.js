@@ -10,8 +10,7 @@ let game1 = new game();
 let restart = document.querySelector(".restart");
 
 restart.addEventListener("click", () => {
-
-    game1 = new game();
+    game1.start_random_game();
 })
 
 
