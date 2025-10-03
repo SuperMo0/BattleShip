@@ -6,8 +6,9 @@ class gameboard {
         this.deads = 0;
     }
 
-
-
+    check_ship(cell) {
+        return this.board[cell].ship != null;
+    }
     check_cell(cell) {
         return this.board[cell].clicked;
     }
@@ -25,11 +26,9 @@ class gameboard {
         else {
             let row = index / 10;
             let col = index % 10;
-            let exist = 10 - col + 1;
-
+            let exist = 10 - col;
             if (exist < size) return false;
             for (let i = 0; i < size; i++) {
-                // console.log(index);
                 if (this.board[index].ship != null) return false;
                 index++;
             }
@@ -48,18 +47,19 @@ class gameboard {
     }
 
     take_hit(cell) {
-
         this.board[cell].clicked = true;
         if (this.board[cell].ship == null) return 0;
         else {
             this.board[cell].ship.hit(this.board[cell].pos);
             if (this.board[cell].ship.isdead()) this.deads++;
+
+
             return 1;
         }
     }
 
-    check_dead(cell) {
-        return this.board[cell].ship.isdead();
+    check_dead() {
+        return this.deads == 5;
     }
 
 }

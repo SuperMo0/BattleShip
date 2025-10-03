@@ -25,9 +25,8 @@ describe("gameboard testing", () => {
 
     test("placment", () => {
         let board = new gameboard();
-        let ship1 = new ship(3);
-        board.place_a_ship(ship1, 2, "v");
-        expect(board.check_placment(3, 2, "h")).toBeFalsy();
+        let ship1 = new ship(4);
+        expect(board.check_placment(4, 27, "h")).toBe(false);
     })
 
 })

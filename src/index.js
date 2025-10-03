@@ -7,7 +7,12 @@ const { game } = require("./game");
 
 let game1 = new game();
 
-// console.log(game1.player_board.board[0]);
+let restart = document.querySelector(".restart");
+
+restart.addEventListener("click", () => {
+
+    game1 = new game();
+})
 
 
 
